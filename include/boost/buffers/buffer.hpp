@@ -84,6 +84,16 @@ public:
     {
     }
 
+    template<
+        class T,
+        class = typename std::enable_if<
+            std::is_same<decltype(std::declval<const T&>().data()), void*>::value &&
+            std::is_same<decltype(std::declval<const T&>().size()), std::size_t>::value
+        >::type>
+    mutable_buffer(const T & buf) : mutable_buffer(buf.data(), buf.size())
+    {
+    }
+
     /** Assignment.
     */
     mutable_buffer& operator=(
@@ -185,6 +195,20 @@ public:
         : p_(static_cast<
             unsigned char const*>(data))
         , n_(size)
+    {
+    }
+
+
+    template<
+        class T,
+        class = typename std::enable_if<
+          (
+              std::is_same<decltype(std::declval<const T&>().data()), void*>::value ||
+              std::is_same<decltype(std::declval<const T&>().data()), const void*>::value
+          ) &&
+          std::is_same<decltype(std::declval<const T&>().size()), std::size_t>::value
+        >::type>
+    const_buffer(const T & buf) : const_buffer(buf.data(), buf.size())
     {
     }
 

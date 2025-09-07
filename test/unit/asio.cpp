@@ -29,10 +29,10 @@ BOOST_STATIC_ASSERT(  std::is_convertible<mutable_buffer, asio::const_buffer>::v
 BOOST_STATIC_ASSERT(  std::is_convertible<mutable_buffer, asio::mutable_buffer>::value);
 
 // asio buffer is convertible to our buffer
-//BOOST_STATIC_ASSERT(  std::is_convertible<asio::const_buffer,   const_buffer>::value);
-//BOOST_STATIC_ASSERT(! std::is_convertible<asio::const_buffer,   mutable_buffer>::value);
-//BOOST_STATIC_ASSERT(  std::is_convertible<asio::mutable_buffer, const_buffer>::value);
-//BOOST_STATIC_ASSERT(  std::is_convertible<asio::mutable_buffer, mutable_buffer>::value);
+BOOST_STATIC_ASSERT(  std::is_convertible<asio::const_buffer,   const_buffer>::value);
+BOOST_STATIC_ASSERT(! std::is_convertible<asio::const_buffer,   mutable_buffer>::value);
+BOOST_STATIC_ASSERT(  std::is_convertible<asio::mutable_buffer, const_buffer>::value);
+BOOST_STATIC_ASSERT(  std::is_convertible<asio::mutable_buffer, mutable_buffer>::value);
 
 // span of asio buffer is an asio sequence
 BOOST_STATIC_ASSERT(  asio::is_const_buffer_sequence<  span<asio::const_buffer>>::value);
@@ -47,10 +47,10 @@ BOOST_STATIC_ASSERT(! asio::is_mutable_buffer_sequence<span<const_buffer>>::valu
 BOOST_STATIC_ASSERT(  asio::is_mutable_buffer_sequence<span<mutable_buffer>>::value);
 
 // span of asio buffer is our sequence
-//BOOST_STATIC_ASSERT(  is_const_buffer_sequence<  span<asio::const_buffer const>>::value);
-//BOOST_STATIC_ASSERT(  is_const_buffer_sequence<  span<asio::mutable_buffer const>>::value);
-//BOOST_STATIC_ASSERT(! is_mutable_buffer_sequence<span<asio::const_buffer const>>::value);
-//BOOST_STATIC_ASSERT(  is_mutable_buffer_sequence<span<asio::mutable_buffer const>>::value);
+BOOST_STATIC_ASSERT(  is_const_buffer_sequence<  span<asio::const_buffer const>>::value);
+BOOST_STATIC_ASSERT(  is_const_buffer_sequence<  span<asio::mutable_buffer const>>::value);
+BOOST_STATIC_ASSERT(! is_mutable_buffer_sequence<span<asio::const_buffer const>>::value);
+BOOST_STATIC_ASSERT(  is_mutable_buffer_sequence<span<asio::mutable_buffer const>>::value);
 
 // span of our buffer is our sequence
 BOOST_STATIC_ASSERT(  is_const_buffer_sequence<  span<const_buffer const>>::value);
